@@ -1,5 +1,11 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { Code2, Palette, Smartphone, Database, Globe, Zap } from "lucide-react";
+
 const skills = [
   {
+    icon: Code2,
     title: "Front-End",
     items: [
       "React",
@@ -12,14 +18,17 @@ const skills = [
     ],
   },
   {
+    icon: Zap,
     title: "Back-End",
     items: ["Node.js", "Express.js"],
   },
   {
+    icon: Database,
     title: "Databases",
     items: ["PostgreSQL", "MongoDB", "Oracle", "MySQL"],
   },
   {
+    icon: Globe,
     title: "Languages",
     items: ["JavaScript", "TypeScript", "Java", "Dart"],
   },
@@ -29,11 +38,17 @@ export default function Skills() {
   return (
     <section
       id="skills"
-      className="bg-gradient-to-r from-black to-indigo-900 text-white py-24 px-6 lg:px-20"
+      className="bg-gradient-to-r from-black via-indigo-950 to-black text-white py-24 px-6 lg:px-20"
     >
       <div className="max-w-6xl mx-auto">
-        {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          className="text-center max-w-2xl mx-auto"
+        >
           <p className="text-indigo-400 uppercase tracking-widest text-sm">
             Skills
           </p>
@@ -41,35 +56,76 @@ export default function Skills() {
             Technologies I Work With
           </h2>
           <p className="mt-6 text-gray-400">
-            A collection of tools and technologies I use to build modern,
-            scalable, and high-quality applications.
+            Tools and technologies I use to build scalable and high-quality
+            applications.
           </p>
-        </div>
+        </motion.div>
 
         {/* Skills Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mt-16">
-          {skills.map((skill) => (
-            <div
-              key={skill.title}
-              className="border border-white/10 rounded-xl p-8 hover:border-indigo-400 transition"
-            >
-              <h3 className="text-2xl font-semibold text-indigo-400">
-                {skill.title}
-              </h3>
+        <motion.div
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-16"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={{
+            hidden: {},
+            visible: {
+              transition: {
+                staggerChildren: 0.15,
+              },
+            },
+          }}
+        >
+          {skills.map((skill) => {
+            const Icon = skill.icon;
 
-              <ul className="mt-6 flex flex-wrap gap-3">
-                {skill.items.map((item) => (
-                  <li
-                    key={item}
-                    className="px-4 py-2 bg-white/5 rounded-lg text-sm text-gray-300 hover:bg-indigo-500 hover:text-white transition"
+            return (
+              <motion.div
+                key={skill.title}
+                variants={{
+                  hidden: { opacity: 0, y: 30 },
+                  visible: {
+                    opacity: 1,
+                    y: 0,
+                    transition: { duration: 0.6, ease: "easeOut" },
+                  },
+                }}
+                whileHover={{ y: -6 }}
+                className="group border border-white/10 bg-white/5 backdrop-blur
+                rounded-xl p-6 hover:border-indigo-400 hover:shadow-indigo-500/20 hover:shadow-lg transition"
+              >
+                {/* Card Header */}
+                <div className="flex items-center gap-4 mb-6">
+                  <motion.div
+                    initial={{ scale: 0.8 }}
+                    whileInView={{ scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4 }}
+                    className="p-3 rounded-lg bg-indigo-500/10 group-hover:bg-indigo-500/20 transition"
                   >
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
+                    <Icon className="text-indigo-400" size={24} />
+                  </motion.div>
+
+                  <h3 className="text-xl font-semibold">{skill.title}</h3>
+                </div>
+
+                {/* Skill Pills */}
+                <div className="flex flex-wrap gap-3">
+                  {skill.items.map((item) => (
+                    <span
+                      key={item}
+                      className="px-3 py-1.5 text-sm rounded-md
+                      bg-black/40 text-gray-300
+                      group-hover:bg-indigo-500/20 group-hover:text-white transition"
+                    >
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+            );
+          })}
+        </motion.div>
       </div>
     </section>
   );

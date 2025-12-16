@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { motion } from "framer-motion";
 import { projects } from "@/data/projects";
 import { Github, ExternalLink } from "lucide-react";
 
@@ -9,7 +10,13 @@ export default function Projects() {
     <section id="projects" className="bg-black text-white py-24 px-6 lg:px-20">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto">
+        <motion.div
+          className="text-center max-w-2xl mx-auto"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+        >
           <p className="text-indigo-400 uppercase tracking-widest text-sm">
             Projects
           </p>
@@ -20,14 +27,37 @@ export default function Projects() {
             A selection of projects that showcase my skills in building
             scalable, real-world applications.
           </p>
-        </div>
+        </motion.div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-20">
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-20"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={{
+            hidden: {},
+            visible: {
+              transition: {
+                staggerChildren: 0.15,
+              },
+            },
+          }}
+        >
           {projects.map((project) => (
-            <div
+            <motion.div
               key={project.title}
-              className="group border border-white/10 rounded-xl overflow-hidden hover:border-indigo-400 transition"
+              variants={{
+                hidden: { opacity: 0, y: 30 },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  transition: { duration: 0.6, ease: "easeOut" },
+                },
+              }}
+              whileHover={{ y: -6 }}
+              className="group border border-white/10 rounded-xl overflow-hidden
+              hover:border-indigo-400 hover:shadow-indigo-500/20 hover:shadow-lg transition"
             >
               {/* Image */}
               <div className="relative h-48 overflow-hidden">
@@ -82,9 +112,9 @@ export default function Projects() {
                   )}
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
