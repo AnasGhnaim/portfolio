@@ -1,4 +1,5 @@
 import { Mail, Phone, MapPin, Linkedin, Github } from "lucide-react";
+import EmailForm from "./contact/email-form";
 
 export default function Contact() {
   return (
@@ -55,6 +56,7 @@ export default function Contact() {
           </a>
         </div>
       </div>
+      <EmailForm />
 
       {/* Optional Background Animation */}
       <div className="absolute inset-0 bg-gradient-to-r from-indigo-900/20 via-black/10 to-indigo-900/20 pointer-events-none animate-pulse-slow"></div>
