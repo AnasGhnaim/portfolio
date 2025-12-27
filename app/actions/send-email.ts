@@ -1,17 +1,20 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use server";
 
 import { headers } from "next/headers";
 import { sendContactEmail } from "@/app/lib/email";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+interface ActionResult {
+  success: boolean;
+  error?: string;
+}
+
 const rateLimit: Map<string, number> = (global as any).rateLimit || new Map();
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 (global as any).rateLimit = rateLimit;
 
 const LIMIT_TIME = 10 * 60 * 1000;
 
-// Helpers functions for validations
 function isValidEmail(email: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
@@ -20,15 +23,12 @@ function sanitize(text: string): string {
   return text.replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
 
-interface ActionResult {
-  success: boolean;
-  error?: string;
-}
-
-export async function sendEmail(formData: FormData): Promise<ActionResult> {
-  const headersList = headers();
-  const ip =
-    (await headersList).get("x-forwarded-for")?.split(",")[0] || "unknown";
+export async function sendEmail(
+  _prevState: ActionResult,
+  formData: FormData
+): Promise<ActionResult> {
+  const headersList = await headers();
+  const ip = headersList.get("x-forwarded-for")?.split(",")[0] || "unknown";
 
   const now = Date.now();
   const lastSent = rateLimit.get(ip);
@@ -40,9 +40,9 @@ export async function sendEmail(formData: FormData): Promise<ActionResult> {
     };
   }
 
-  let name = formData.get("name")?.toString().trim();
-  let email = formData.get("email")?.toString().trim();
-  let message = formData.get("message")?.toString().trim();
+  let name = formData.get("name") as string;
+  let email = formData.get("email") as string;
+  let message = formData.get("message") as string;
 
   if (!name || !email || !message) {
     return { success: false, error: "All fields are required." };
@@ -66,7 +66,6 @@ export async function sendEmail(formData: FormData): Promise<ActionResult> {
 
   try {
     await sendContactEmail({ name, email, message });
-
     rateLimit.set(ip, now);
     return { success: true };
   } catch (error) {

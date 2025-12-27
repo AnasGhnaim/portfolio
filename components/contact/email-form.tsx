@@ -1,21 +1,18 @@
 "use client";
 
-import { useState } from "react";
+import { useActionState } from "react";
 import { sendEmail } from "@/app/actions/send-email";
+import Spinner from "./spinner";
 
-type EmailStatus = { success?: boolean; error?: string } | null;
+type EmailState = {
+  success: boolean;
+  error?: string;
+};
+
+const initialState: EmailState = { success: false };
 
 export default function EmailForm() {
-  const [status, setStatus] = useState<EmailStatus>(null);
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  async function action(formData: any) {
-    const result = (await sendEmail(formData)) as {
-      success?: boolean;
-      error?: string;
-    } | null;
-    setStatus(result);
-  }
+  const [state, action, pending] = useActionState(sendEmail, initialState);
 
   return (
     <div className="relative z-10 mt-16 flex justify-center px-6">
@@ -27,6 +24,7 @@ export default function EmailForm() {
           Send Me a Message
         </h2>
 
+        {/* Name */}
         <div className="mb-6">
           <label htmlFor="name" className="block mb-2 text-gray-300">
             Full Name
@@ -39,6 +37,7 @@ export default function EmailForm() {
           />
         </div>
 
+        {/* Email */}
         <div className="mb-6">
           <label htmlFor="email" className="block mb-2 text-gray-300">
             Email Address
@@ -52,6 +51,7 @@ export default function EmailForm() {
           />
         </div>
 
+        {/* Message */}
         <div className="mb-8">
           <label htmlFor="message" className="block mb-2 text-gray-300">
             Message
@@ -65,21 +65,31 @@ export default function EmailForm() {
           />
         </div>
 
-        {status?.success && (
+        {/* Feedback */}
+        {state.success && (
           <p className="mb-4 text-green-400 text-center">
             Message sent successfully ✅
           </p>
         )}
 
-        {status?.error && (
-          <p className="mb-4 text-red-400 text-center">{status.error}</p>
+        {state.error && (
+          <p className="mb-4 text-red-400 text-center">{state.error}</p>
         )}
 
+        {/* Submit Button */}
         <button
           type="submit"
-          className="w-full py-3 rounded-lg bg-indigo-600 hover:bg-indigo-700 transition"
+          disabled={pending}
+          className="w-full py-3 rounded-lg bg-indigo-600 hover:bg-indigo-700 transition flex items-center justify-center gap-2 disabled:opacity-60"
         >
-          Send Message
+          {pending ? (
+            <>
+              <Spinner />
+              Sending...
+            </>
+          ) : (
+            "Send Message"
+          )}
         </button>
       </form>
     </div>
