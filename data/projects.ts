@@ -36,6 +36,14 @@ export const projects = [
     live: "https://my-trello-clone-fxze.vercel.app/",
   },
   {
+    title: "XO game",
+    description:
+      "A real-time multiplayer Tic-Tac-Toe (XO) game built with Socket.IO. Players compete live with synchronized gameplay, featuring all possible outcomes: X win, O win, or draw. Designed with a responsive interface and real-time state updates.",
+    image: "/projects/xo.png",
+    tech: ["Next.js", "TypeScript", "socket io client", "socket io server"],
+    github: "https://github.com/AnasGhnaim/Tic-Tac-Toc",
+  },
+  {
     title: "Movie Hub",
     description:
       "A movie discovery web application built during my frontend internship. Implements efficient data fetching, caching with React Query, and global state management using Redux.",
