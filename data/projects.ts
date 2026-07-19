@@ -1,13 +1,5 @@
 export const projects = [
-  {
-    title: "ILM-VERSE (LMS)",
-    description:
-      "A full-stack Learning Management System built as a graduation project. Features multi-role authentication (students, teachers, admins, parents), assignments, quizzes, automated grading, analytics, and a parent portal.",
-    image: "/projects/ilm-verse.png",
-    tech: ["React", "Node.js", "PostgreSQL", "MongoDB"],
-    github: "https://github.com/MohamadAbudraiea/ILM-Verse.git",
-    live: "https://ilm-verse-frontend-kcil.vercel.app/",
-  },
+ 
   {
     title: "Al-Kharouf Suits",
     description:
@@ -21,7 +13,7 @@ export const projects = [
     title: "Al-Ameer Paper & Board",
     description:
       "A professional business website developed to showcase products, company profile, and services with a clean, responsive design.",
-    image: "/projects/al-ameer.png",
+    image: "/projects/al-ameer2.png",
     tech: ["React", "TypeScript"],
     github: null,
     live: "https://www.alameerpaper.com/",
@@ -34,6 +26,15 @@ export const projects = [
     tech: ["React", "TypeScript", "Express", "Redux", "React Query"],
     github: "https://github.com/AnasGhnaim/my-trello-clone",
     live: "https://my-trello-clone-fxze.vercel.app/",
+  },
+  {
+    title: "ILM-VERSE (LMS)",
+    description:
+      "A full-stack Learning Management System built as a graduation project. Features multi-role authentication (students, teachers, admins, parents), assignments, quizzes, automated grading, analytics, and a parent portal.",
+    image: "/projects/ilm-verse.png",
+    tech: ["React", "Node.js", "PostgreSQL", "MongoDB"],
+    github: "https://github.com/MohamadAbudraiea/ILM-Verse.git",
+    // live: "https://ilm-verse-frontend-kcil.vercel.app/",
   },
   {
     title: "XO game",
@@ -50,7 +51,7 @@ export const projects = [
     image: "/projects/movie-hub.png",
     tech: ["React", "Redux", "React Query"],
     github: "https://github.com/AnasGhnaim/Intern-Project1",
-    live: "http://2003-intern-project.s3-website.eu-north-1.amazonaws.com/",
+    // live: "http://2003-intern-project.s3-website.eu-north-1.amazonaws.com/",
   },
   {
     title: "Recipe App (Expo / React Native)",
