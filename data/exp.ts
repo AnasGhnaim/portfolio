@@ -71,4 +71,21 @@
       ],
       link: null,
     },
+    {
+      role: "FrontendDeveloper — Graduation Project",
+      company: "ILM-VERSE (Information Lifecycle Management)",
+      meta: "Amman, Jordan",
+      period: "2025",
+      logo: "/exp/ILM.png",
+      description:
+        "A full-stack Learning Management System (LMS) built for Thinking Flares School, with multi-role access for students, teachers, admins, and parents.",
+      bullets: [
+        "Implemented secure authentication and role-based authorization.",
+        "Built modules for assignments, quizzes, automated grading, and analytics-driven progress tracking.",
+        "Designed a parent portal for real-time performance and attendance insights.",
+        "Engineered a scalable architecture with clean API integration and modular front-end components.",
+      ],
+      link: { label: "View Project", href: "https://github.com/MohamadAbudraiea/ILM-Verse.git" },
+    },
+    
   ];
