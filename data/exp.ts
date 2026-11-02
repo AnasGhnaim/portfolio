@@ -1,17 +1,31 @@
  export const experiences = [
     {
-      role: "Junior Frontend Developer (Web & Mobile)",
-      company: "Qawi (Founder)",
+      role: "Frontend Developer (Web & Mobile)",
+      company: "Dynamic Innovations Technology",
+      meta: "Amman, Jordan",
+      period: "Present",
+      logo: "/exp/dit.png",
+      description:
+        "Delivered 2 web platforms and 3 mobile applications for enterprise clients using React, React Native (Expo), and TypeScript, integrated with Microsoft Dynamics 365 CRM / Dataverse.",
+      bullets: [
+        "ADC Investor Journey Portal: sole frontend developer on a bilingual (EN/AR, RTL) investor onboarding portal for Aqaba Development Company, built from scratch with lazy-loaded protected routes and a shared API client.",
+        "Built multi-entity registration with React Hook Form + Zod and split server/client state with TanStack Query and Zustand.",
+        "White-label CRM product: reusable web platform and React Native (Expo) app with a per-client theme layer, shipped as Deirah, Marafid (platform + app), and Riyadh Holding (app).",
+        "Implemented CRM-backed authentication and biometric (Face ID / fingerprint) login, shared across all client builds.",
+      ],
+      link: null,
+    },
+    {
+      role: "Frontend Developer (Web & Mobile)",
+      company: "Qawi, Gym Management SaaS",
       meta: "Remote",
       period: "2026 - Present",
       logo: "/exp/qawi.png",
       description:
-        "Building and maintaining the Qawi web app and mobile app, focused on clean UI, responsive layouts, and smooth cross-platform user experience.",
+        "Own the full frontend of a SaaS platform serving gym owners, staff, and members on web and mobile, including UI design, state management, and form validation.",
       bullets: [
-        "Developed responsive front-end features for the Qawi website using React and Tailwind CSS.",
-        "Built and maintained mobile screens and components using React Native.",
-        "Collaborated with the team on API integration, state management, and UI consistency across web and mobile.",
-        "Focused on performance, accessibility, and maintainable component architecture.",
+        "Build gym-management features and manage application and server state to keep data consistent across screens.",
+        "Implement validation logic for reliable data entry platform-wide.",
       ],
       link: null,
     },
